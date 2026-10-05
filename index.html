@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Relógio Gamer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="clock-container">
+
+        <div class="clock-card">
+
+            <div class="status">
+                <span class="status-dot"></span>
+                SISTEMA ONLINE
+            </div>
+
+            <div class="time" id="time">
+                00:00:00
+            </div>
+
+            <div class="date" id="date">
+                00/00/0000
+            </div>
+
+            <div class="weekday" id="weekday">
+                Segunda-feira
+            </div>
+
+            <div class="line"></div>
+
+            <div class="footer">
+                <span>●</span>
+                DIGITAL CLOCK
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at top, #1b263b, #090b10 55%, #050608);
+
+    color: white;
+
+    overflow: hidden;
+}
+
+/* Efeito de brilho no fundo */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    width: 500px;
+    height: 500px;
+
+    background: #0078d4;
+
+    border-radius: 50%;
+
+    filter: blur(180px);
+
+    opacity: 0.18;
+
+    top: -200px;
+    left: -150px;
+}
+
+/* Container */
+
+.clock-container {
+    width: 100%;
+    padding: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Cartão */
+
+.clock-card {
+    width: min(650px, 95vw);
+
+    padding: 50px 45px;
+
+    text-align: center;
+
+    background: rgba(20, 24, 32, 0.75);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.55),
+        0 0 40px rgba(0, 120, 212, 0.08);
+
+    animation: aparecer 0.8s ease;
+}
+
+/* Status */
+
+.status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+
+    font-size: 12px;
+    letter-spacing: 3px;
+
+    color: #aeb7c4;
+
+    margin-bottom: 25px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #00ff88;
+
+    box-shadow: 0 0 12px #00ff88;
+
+    animation: pulsar 1.5s infinite;
+}
+
+/* Hora */
+
+.time {
+    font-size: clamp(65px, 12vw, 125px);
+
+    font-weight: 600;
+
+    letter-spacing: 6px;
+
+    line-height: 1;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 10px rgba(0, 120, 212, 0.7),
+        0 0 30px rgba(0, 120, 212, 0.4);
+
+    font-variant-numeric: tabular-nums;
+}
+
+/* Data */
+
+.date {
+    margin-top: 25px;
+
+    font-size: 18px;
+
+    color: #d5dce5;
+
+    letter-spacing: 2px;
+}
+
+/* Dia da semana */
+
+.weekday {
+    margin-top: 8px;
+
+    font-size: 15px;
+
+    color: #5eb5ff;
+
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+
+    font-weight: 600;
+}
+
+/* Linha */
+
+.line {
+    height: 1px;
+
+    width: 70%;
+
+    margin: 30px auto;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(94, 181, 255, 0.8),
+        transparent
+    );
+
+    box-shadow: 0 0 10px rgba(94, 181, 255, 0.3);
+}
+
+/* Rodapé */
+
+.footer {
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    color: #707b8b;
+}
+
+.footer span {
+    color: #00ff88;
+
+    text-shadow: 0 0 10px #00ff88;
+}
+
+/* Animações */
+
+@keyframes pulsar {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.4;
+        transform: scale(0.7);
+    }
+}
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Celular */
+
+@media (max-width: 600px) {
+
+    .clock-card {
+        padding: 40px 20px;
+    }
+
+    .time {
+        letter-spacing: 2px;
+    }
+
+    .date {
+        font-size: 15px;
+    }
+
+    .weekday {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+}
+</style>
+<script>
+    const WEEK = [
+    "Domingo",
+    "Segunda-feira",
+    "Terça-feira",
+    "Quarta-feira",
+    "Quinta-feira",
+    "Sexta-feira",
+    "Sábado"
+];
+
+function zeroPadding(numero, digitos) {
+    return String(numero).padStart(digitos, "0");
+}
+
+function updateClock() {
+
+    const now = new Date();
+
+    const horas = zeroPadding(now.getHours(), 2);
+    const minutos = zeroPadding(now.getMinutes(), 2);
+    const segundos = zeroPadding(now.getSeconds(), 2);
+
+    const dia = zeroPadding(now.getDate(), 2);
+    const mes = zeroPadding(now.getMonth() + 1, 2);
+    const ano = now.getFullYear();
+
+    document.getElementById("time").textContent =
+        `${horas}:${minutos}:${segundos}`;
+
+    document.getElementById("date").textContent =
+        `${dia}/${mes}/${ano}`;
+
+    document.getElementById("weekday").textContent =
+        WEEK[now.getDay()];
+}
+
+/* Atualiza assim que a página abre */
+updateClock();
+
+/* Atualiza a cada segundo */
+setInterval(updateClock, 1000);
+
+</script>
